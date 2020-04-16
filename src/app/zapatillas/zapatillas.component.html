@@ -1,0 +1,59 @@
+<h2> {{titulo2}} </h2>
+<ul>
+		
+		<li *ngFor="let marcas of marcasTipo; let indice = index"> {{indice + ' ' + marcas}} </li>
+
+</ul>
+
+
+<h2> {{titulo}} </h2>
+<ul>
+	
+	
+		<li *ngFor="let deportiva of zapatillas">
+			<span  [ngStyle] = " { 'text-decoration' : !deportiva.stock ? 'line-through' : 'none' }  ">
+			{{deportiva.nombre}}  - <strong> {{deportiva.precio}} $ </strong>
+			
+			</span>
+		<span *ngIf="deportiva.precio <= 80"
+
+		[style.background]="deportiva.precio <= 80 ?'green' : 'transparent'" 
+		[style.color]="deportiva.precio <= 80 ?'white' : 'black'" >¡En oferta</span>
+		
+	</li>
+
+</ul>
+
+
+<p>El color de la mayoria de nuestras zapatillas es: </p>
+<!--
+<ul [ngSwitch]='color'>
+	
+
+	<li *ngSwitchCase="'gray'">El color predominante es el <span [ngStyle]=" {'background': 'color'} "> gris</span></li>
+	<li *ngSwitchCase="'white'">El color predominante es el blanco</li>
+	<li *ngSwitchCase="'black'">El color predominante es el blue</li>
+
+</ul>
+
+--->
+
+<input type="text" name="" [(ngModel)]="color">
+<ul [ngSwitch]= "color">
+	<li *ngSwitchCase="'gray'">El color predominante es el <span [ngStyle]=" {'background': color} "> gris</span></li>
+	<li *ngSwitchCase="'white'">El color predominante es el <span [ngStyle]=" {'background': color} "> blanco</span></li>
+	<li *ngSwitchCase="'black'">El color predominante es el <span [ngStyle]=" {'background': color} "> negro</span></li>
+	<li *ngSwitchCase="'black'">El color predominante es el <span [ngStyle]=" {'background': color} "> negro</span></li>
+
+</ul>
+
+<h3>Esto esta debajo del codigo del ngSwitch</h3>
+
+<p>Añadir marca</p>
+<p>
+	<input type="text" name="" [(ngModel)]="mi_marca">
+	<button (click)=getMarca()>Mostrar marcas</button>
+	<button (click)=addMarca()>Agregar marcas</button>
+</p>
+
+<p> {{mi_marca}}  </p>
