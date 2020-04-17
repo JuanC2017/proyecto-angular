@@ -1,0 +1,12 @@
+.fondoRojo{
+	background: red;
+
+}
+
+.subrayado{
+	text-decoration: underline;
+}
+
+.active{
+	border:2px solid gray;
+}

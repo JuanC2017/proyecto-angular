@@ -1,7 +1,19 @@
+
+<!-- Directiva de ngFor--->
+
 <h2> {{titulo2}} </h2>
 <ul>
 		
-		<li *ngFor="let marcas of marcasTipo; let indice = index"> {{indice + ' ' + marcas}} </li>
+		<li *ngFor="let marcas of marcasTipo; let indice = index"> {{indice + ' ' + marcas}} 
+
+			<button (click)="borrarMarcas(indice)">Borrar</button>
+		</li>
+		<p>
+			
+			<button (click)="borrarMarca()">Borrar marca</button>
+
+		</p>
+		
 
 </ul>
 
@@ -9,10 +21,17 @@
 <h2> {{titulo}} </h2>
 <ul>
 	
-	
+	<!--- Directiva ngStyle con ngFor y ngClass-->
 		<li *ngFor="let deportiva of zapatillas">
 			<span  [ngStyle] = " { 'text-decoration' : !deportiva.stock ? 'line-through' : 'none' }  ">
-			{{deportiva.nombre}}  - <strong> {{deportiva.precio}} $ </strong>
+			{{deportiva.nombre}}  - <strong [ngClass]=" { 'fondoRojo': deportiva.precio >= 80
+
+			, 'subrayado': deportiva.marca == 'nike'  
+
+			 } "> {{deportiva.precio}} $ 
+
+
+			</strong>
 			
 			</span>
 		<span *ngIf="deportiva.precio <= 80"
@@ -27,18 +46,11 @@
 
 <p>El color de la mayoria de nuestras zapatillas es: </p>
 <!--
-<ul [ngSwitch]='color'>
-	
-
-	<li *ngSwitchCase="'gray'">El color predominante es el <span [ngStyle]=" {'background': 'color'} "> gris</span></li>
-	<li *ngSwitchCase="'white'">El color predominante es el blanco</li>
-	<li *ngSwitchCase="'black'">El color predominante es el blue</li>
-
-</ul>
+Directiva de ngSwitch y de ngModel que es el two data binding
 
 --->
 
-<input type="text" name="" [(ngModel)]="color">
+<input type="text" name="" [(ngModel)]="color" (keyup.enter)="mostrarPalabra()"> <!--Aca tambien utlizamos la directiva keyup con metodo enter -->
 <ul [ngSwitch]= "color">
 	<li *ngSwitchCase="'gray'">El color predominante es el <span [ngStyle]=" {'background': color} "> gris</span></li>
 	<li *ngSwitchCase="'white'">El color predominante es el <span [ngStyle]=" {'background': color} "> blanco</span></li>
@@ -47,13 +59,13 @@
 
 </ul>
 
-<h3>Esto esta debajo del codigo del ngSwitch</h3>
-
+<h3></h3>
+<!--Directiva ngModel la cual es bidireccional -->
 <p>Añadir marca</p>
 <p>
-	<input type="text" name="" [(ngModel)]="mi_marca">
+	<input type="text" name="" [(ngModel)]="mi_marca" (blur)="onBlur()"> <!-- aqui tambien utilizamos el evento blur-->
 	<button (click)=getMarca()>Mostrar marcas</button>
 	<button (click)=addMarca()>Agregar marcas</button>
 </p>
 
-<p> {{mi_marca}}  </p>
+<strong> {{mi_marca}}  </strong>
