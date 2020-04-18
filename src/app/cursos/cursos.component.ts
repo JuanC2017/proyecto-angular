@@ -24,12 +24,20 @@ export class CursosComponent implements OnInit {
   	this.fallowers = +params.fallowers;
   		console.log(this.nombre);
 
+      if (this.nombre == 'ninguno') {
+        this._router.navigate( ['/home'] );
+      }
+
   	});
 
   	/*this._route.params.subscribe((params: Params)=>{
   		this.nombre = params.nombre;
   	});*/
 
+  }
+
+  redirigir(){
+    this._router.navigate( ['/zapatillas'] );
   }
 
 }

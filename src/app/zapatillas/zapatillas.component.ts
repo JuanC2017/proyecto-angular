@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import { Zapatilla } from '../models/zapatilla';
+import { ZapatillaService } from '../services/zapatilla.service';
 
 @Component({
 	selector: 'zapatillas',
-	templateUrl: './zapatillas.component.html'
+	templateUrl: './zapatillas.component.html',
+	providers: [ ZapatillaService ]
 })
 
 export class ZapatillasComponent implements OnInit{
@@ -17,7 +19,7 @@ export class ZapatillasComponent implements OnInit{
 	public mi_marca: string;
 	
 	
-	constructor() {
+	constructor(private _zapatillaService: ZapatillaService) {
 
 		this.mi_marca = 'fila';
 
@@ -27,14 +29,7 @@ export class ZapatillasComponent implements OnInit{
 
 		this.titulo = 'Componente de Zapatillas';
 		this.titulo2 = 'La mejores marcas de zapatos';
-		this.zapatillas = [
-			new Zapatilla('polo clasic', 'polo assn', 'gray', 60, false),
-			new Zapatilla('rebook clasic', 'rebook', 'white', 200, true),
-			new Zapatilla('nike running', 'nike', 'black', 400, true),
-			new Zapatilla('polo clasic', 'polo assn', 'black', 70, true)
-
-
-		];
+		
 
 
 	
@@ -42,6 +37,9 @@ export class ZapatillasComponent implements OnInit{
 	}
 
 	ngOnInit(){
+
+		this.zapatillas = this._zapatillaService.getZapatilla();
+		alert( this._zapatillaService.getTexto());
 		console.log(this.zapatillas);
 	
 		
